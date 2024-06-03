@@ -1,0 +1,39 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "naturoute",
+  "description": "Routing through natural spaces.",
+  "name": "naturoute: Routing through natural spaces",
+  "codeRepository": "https://github.com/UrbanAnalyst/naturoute",
+  "issueTracker": "https://github.com/UrbanAnalyst/naturoute/issues",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "0.0.0",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.4.0 (2024-04-24)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Mark",
+      "familyName": "Padgham",
+      "email": "mark.padgham@email.com"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Mark",
+      "familyName": "Padgham",
+      "email": "mark.padgham@email.com"
+    }
+  ],
+  "softwareRequirements": {
+    "SystemRequirements": null
+  },
+  "fileSize": "1.711KB",
+  "contIntegration": "https://github.com/UrbanAnalyst/naturoute/actions?query=workflow%3AR-CMD-check",
+  "developmentStatus": "https://www.repostatus.org/#active"
+}

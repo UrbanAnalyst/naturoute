@@ -1,0 +1,32 @@
+---
+title: "naturoute"
+output:
+  md_document:
+    variant: markdown_github
+
+  rmarkdown::html_vignette:
+    self_contained: no
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r opts, echo = FALSE}
+knitr::opts_chunk$set (
+    collapse = TRUE,
+    warning = TRUE,
+    message = TRUE,
+    width = 120,
+    comment = "#>",
+    fig.retina = 2,
+    fig.path = "README-"
+)
+```
+
+[![R build
+status](https://github.com/UrbanAnalyst/naturoute/workflows/R-CMD-check/badge.svg)](https://github.com/UrbanAnalyst/naturoute/actions?query=workflow%3AR-CMD-check)
+[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+
+# naturoute
+
+Routing through natural spaces.

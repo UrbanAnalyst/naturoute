@@ -1,0 +1,16 @@
+Package: naturoute
+Title: Routing through natural spaces
+Version: 0.0.0
+Authors@R: 
+    person(given = "Mark",
+           family = "Padgham",
+           role = c("aut", "cre"),
+           email = "mark.padgham@email.com")
+Description: Routing through natural spaces.
+License: GPL-3
+URL: https://github.com/UrbanAnalyst/naturoute
+BugReports: https://github.com/UrbanAnalyst/naturoute/issues
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
