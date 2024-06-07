@@ -11,4 +11,26 @@
 #' on the OSM network and natural spaces.
 #' @export
 nr_prepare_data <- function (city, osm_file, osm_boundary_id, results_dir) {
+
+    fbdry <- get_bounary_polygon (osm_boundary_id)
+    f <- extract_data_in_bdry (city, results_dir, fbdry)
+}
+
+
+get_bounary_polygon <- function (osm_id) {
+    f <- file.path (results_dir, paste0 (city, "-boundary.osm"))
+    if (!file.exists (f)) {
+        cmd <- paste ("osmium getid -r -t ", path, paste0 ("r", osm_id), "-o", f)
+        system (cmd)
+    }
+    return (f)
+}
+
+extract_data_in_bdry <- function (city, results_dir, fbdry) {
+    f <- file.path (results_dir, paste0 (city, ".osm.pbf"))
+    if (!file.exists (f)) {
+        cmd <- paste ("osmium extract -p", ftmp, path, "-o", f)
+        system (cmd)
+    }
+    return (f)
 }
