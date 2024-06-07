@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/UrbanAnalyst/naturoute",
   "issueTracker": "https://github.com/UrbanAnalyst/naturoute/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.0.008",
+  "version": "0.0.0.009",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -45,6 +45,18 @@
     },
     "2": {
       "@type": "SoftwareApplication",
+      "identifier": "cli",
+      "name": "cli",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=cli"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
       "provider": {
@@ -57,7 +69,7 @@
     },
     "SystemRequirements": {}
   },
-  "fileSize": "5792.07KB",
+  "fileSize": "5792.684KB",
   "readme": "https://github.com/UrbanAnalyst/naturoute/blob/main/README.md",
   "contIntegration": "https://github.com/UrbanAnalyst/naturoute/actions?query=workflow%3AR-CMD-check",
   "developmentStatus": "https://www.repostatus.org/#active"

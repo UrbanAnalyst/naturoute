@@ -13,11 +13,16 @@
 nr_prepare_data <- function (city, osm_file, osm_boundary_id, results_dir = ".") {
 
     results_dir <- normalizePath (results_dir)
+    n_files <- length (grep (paste0 (city, ".*\\.osm$"), list.files (results_dir)))
 
     fbdry <- get_bounary_polygon (osm_file, osm_boundary_id, results_dir, city)
     f <- extract_data_in_bdry (city, osm_file, results_dir, fbdry)
     f_network <- extract_network_data (city, results_dir)
     f_natural <- extract_natural_data (city, results_dir)
+
+    if (n_files < 3) {
+        cli::cli_alert_success (cli::col_yellow ("Done"))
+    }
 
     c (network = f_network, natural = f_natural)
 }
@@ -26,6 +31,7 @@ nr_prepare_data <- function (city, osm_file, osm_boundary_id, results_dir = ".")
 get_bounary_polygon <- function (osm_file, osm_id, results_dir, city) {
     fout <- file.path (results_dir, paste0 (city, "-boundary.osm"))
     if (!file.exists (fout)) {
+        cli::cli_alert_info (cli::col_green ("Extracting boundary polygon ..."))
         cmd <- paste ("osmium getid -r -t ", osm_file, paste0 ("r", osm_id), "-o", fout)
         system (cmd)
     }
@@ -35,6 +41,7 @@ get_bounary_polygon <- function (osm_file, osm_id, results_dir, city) {
 extract_data_in_bdry <- function (city, osm_file, results_dir, fbdry) {
     f <- file.path (results_dir, paste0 (city, ".osm.pbf"))
     if (!file.exists (f)) {
+        cli::cli_alert_info (cli::col_green ("Reducing all OSM data to within boundary polygon ..."))
         cmd <- paste ("osmium extract -p", fbdry, osm_file, "-o", f)
         system (cmd)
     }
@@ -49,6 +56,7 @@ extract_network_data <- function (city, results_dir) {
     fout <- file.path (results_dir, paste0 (city, "-network.osm"))
 
     if (!file.exists (fout)) {
+        cli::cli_alert_info (cli::col_green ("Extracting network data ..."))
         tags <- c (
             "highway", "restriction", "access", "foot", "motorcar",
             "motor_vehicle", "vehicle", "toll", "bicycle",
@@ -70,6 +78,7 @@ extract_natural_data <- function (city, results_dir) {
     fout <- file.path (results_dir, paste0 (city, "-natural.osm"))
 
     if (!file.exists (fout)) {
+        cli::cli_alert_info (cli::col_green ("Extracting natural space data ..."))
         tags <- c (
             "w/leisure=garden,park,nature_reserve,playground",
             "w/surface=grass",
