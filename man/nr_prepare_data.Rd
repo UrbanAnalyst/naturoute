@@ -4,9 +4,12 @@
 \alias{nr_prepare_data}
 \title{Prepare data from an Open Street Map (OSM) file}
 \usage{
-nr_prepare_data(osm_file, osm_boundary_id, results_dir)
+nr_prepare_data(city, osm_file, osm_boundary_id, results_dir)
 }
 \arguments{
+\item{city}{A character string giving the name of the city or region for
+which natural routes are to be calculated.}
+
 \item{osm_file}{A character string giving the path to an OSM file. The
 function will work most efficiently if this in in \code{.pbf} format.}
 
