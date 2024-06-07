@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/UrbanAnalyst/naturoute",
   "issueTracker": "https://github.com/UrbanAnalyst/naturoute/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.0.005",
+  "version": "0.0.0.6",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -31,9 +31,34 @@
     }
   ],
   "softwareRequirements": {
-    "SystemRequirements": {}
+    "1": {
+      "@type": "SoftwareApplication",
+      "identifier": "checkmate",
+      "name": "checkmate",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=checkmate"
+    },
+    "2": {
+      "@type": "SoftwareApplication",
+      "identifier": "sf",
+      "name": "sf",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=sf"
+    },
+    "SystemRequirements": null
   },
-  "fileSize": "1.711KB",
+  "fileSize": "5792.07KB",
+  "readme": "https://github.com/UrbanAnalyst/naturoute/blob/main/README.md",
   "contIntegration": "https://github.com/UrbanAnalyst/naturoute/actions?query=workflow%3AR-CMD-check",
   "developmentStatus": "https://www.repostatus.org/#active"
 }
