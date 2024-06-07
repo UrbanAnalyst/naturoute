@@ -10,10 +10,13 @@
 #' @return A character vector of two elements containing full file paths to data
 #' on the OSM network and natural spaces.
 #' @export
-nr_prepare_data <- function (city, osm_file, osm_boundary_id, results_dir) {
+nr_prepare_data <- function (city, osm_file, osm_boundary_id, results_dir = ".") {
+
+    results_dir <- normalizePath (results_dir)
 
     fbdry <- get_bounary_polygon (osm_boundary_id)
     f <- extract_data_in_bdry (city, results_dir, fbdry)
+    f_network <- extract_network_data (city, results_dir)
 }
 
 
@@ -33,4 +36,25 @@ extract_data_in_bdry <- function (city, results_dir, fbdry) {
         system (cmd)
     }
     return (f)
+}
+
+extract_network_data <- function (city, results_dir) {
+    fin <- file.path (results_dir, paste0 (city, ".osm.pbf"))
+    if (!file.exists (fin)) {
+        stop ("Input file [", fin, "] not found", call. = FALSE)
+    }
+    fout <- file.path (results_dir, paste0 (city, "-network.osm"))
+
+    if (!file.exists (fout)) {
+        tags <- c (
+            "highway", "restriction", "access", "foot", "motorcar",
+            "motor_vehicle", "vehicle", "toll", "bicycle",
+            "cycleway", "cycleway:left", "cycleway:right"
+        )
+        tags <- paste0 (paste0 ("wr/", tags), collapse = " ")
+        cmd <- paste ("osmium tags-filter", fin, tags, "-o", fout)
+        system (cmd)
+    }
+
+    return (fout)
 }
