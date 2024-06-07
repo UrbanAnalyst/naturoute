@@ -14,8 +14,8 @@ nr_prepare_data <- function (city, osm_file, osm_boundary_id, results_dir = ".")
 
     results_dir <- normalizePath (results_dir)
 
-    fbdry <- get_bounary_polygon (osm_file, osm_boundary_id)
-    f <- extract_data_in_bdry (city, results_dir, fbdry)
+    fbdry <- get_bounary_polygon (osm_file, osm_boundary_id, results_dir, city)
+    f <- extract_data_in_bdry (city, osm_file, results_dir, fbdry)
     f_network <- extract_network_data (city, results_dir)
     f_natural <- extract_natural_data (city, results_dir)
 
@@ -23,7 +23,7 @@ nr_prepare_data <- function (city, osm_file, osm_boundary_id, results_dir = ".")
 }
 
 
-get_bounary_polygon <- function (osm_file, osm_id) {
+get_bounary_polygon <- function (osm_file, osm_id, results_dir, city) {
     fout <- file.path (results_dir, paste0 (city, "-boundary.osm"))
     if (!file.exists (fout)) {
         cmd <- paste ("osmium getid -r -t ", osm_file, paste0 ("r", osm_id), "-o", fout)
@@ -32,10 +32,10 @@ get_bounary_polygon <- function (osm_file, osm_id) {
     return (fout)
 }
 
-extract_data_in_bdry <- function (city, results_dir, fbdry) {
+extract_data_in_bdry <- function (city, osm_file, results_dir, fbdry) {
     f <- file.path (results_dir, paste0 (city, ".osm.pbf"))
     if (!file.exists (f)) {
-        cmd <- paste ("osmium extract -p", ftmp, path, "-o", f)
+        cmd <- paste ("osmium extract -p", fbdry, osm_file, "-o", f)
         system (cmd)
     }
     return (f)
@@ -65,7 +65,7 @@ extract_network_data <- function (city, results_dir) {
 extract_natural_data <- function (city, results_dir) {
     fin <- file.path (results_dir, paste0 (city, ".osm.pbf"))
     if (!file.exists (fin)) {
-        stop ("Input file [", f, "] not found", call. = FALSE)
+        stop ("Input file [", fin, "] not found", call. = FALSE)
     }
     fout <- file.path (results_dir, paste0 (city, "-natural.osm"))
 
@@ -76,8 +76,8 @@ extract_natural_data <- function (city, results_dir) {
             "w/landuse=forest,meadow,recreation_ground,village_green",
             "wr/natural"
         )
-        ft <- paste0 (city, "-natural.osm")
-        cmd <- paste ("osmium tags-filter", f, paste0 (tags, collapse = " "), "-o", ft)
+        fout <- paste0 (city, "-natural.osm")
+        cmd <- paste ("osmium tags-filter", fin, paste0 (tags, collapse = " "), "-o", fout)
         system (cmd)
     }
 
