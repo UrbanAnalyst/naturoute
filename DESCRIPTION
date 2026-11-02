@@ -1,6 +1,6 @@
 Package: naturoute
 Title: Routing through natural spaces
-Version: 0.0.0.009
+Version: 0.0.0.010
 Authors@R: 
     person(given = "Mark",
            family = "Padgham",
